@@ -23,7 +23,7 @@ Whenever application state is updated using `updateAppState(op, key, value)` and
 
 ### Influences
 1. [OM](https://github.com/omcljs/om)
-2. [Diatomic databases](http://www.datomic.com/about.html)
+2. [Datomic databases](http://www.datomic.com/about.html)
 
 ### License
 MIT
