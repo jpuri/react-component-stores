@@ -3,13 +3,13 @@
   "version": "0.0.0",
   "description": "An example playground for react-state library.",
   "author": {
-    "name": "Jyoti Puri",
-    "email": "jyotipuri@gmail.com",
-    "url": ""
+    "name": "Jyoti Puri, Nik Graf",
+    "email": "jyotipuri@gmail.com, nik@nikgraf.com",
+    "url": "http://www.nikgraf.com"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/jpuri/react-state.git"
+    "url": "<todo>"
   },
   "dependencies": {
     "react": "=0.14.3",
