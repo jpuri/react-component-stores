@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import Immutable from 'immutable';
 
 // Collection of methods to update state of composing classes, and a counter to make unique keys in the collection.
-let componentUpdateHooks = new Immutable.Map({});
-let componentUpdateHookCounter=0;
+let updateComponentStoreHooks = new Immutable.Map({});
+let updateComponentStoreHookCounter=0;
 
 // Collection of history of all actions in the application.
 let actionHistory = new Immutable.List();
@@ -16,8 +16,8 @@ export const updateAppState = function(actionType, key, value) {
     value: value
   };
   actionHistory = actionHistory.push(action)
-  componentUpdateHooks.forEach(function(updateComponent) {
-    updateComponent(action);
+  updateComponentStoreHooks.forEach(function(updateComponentStore) {
+    updateComponentStore();
   })
 }
 
@@ -28,60 +28,48 @@ export var configureStore = (fields) => {
     class newComponent extends Component  {
       constructor(properties) {
         super(properties);
-        this.hookIndex = componentUpdateHookCounter;
-        componentUpdateHookCounter++;
+        this.hookIndex = updateComponentStoreHookCounter;
+        updateComponentStoreHookCounter++;
         this.MyComponent = React.createFactory(component);
         this.state = {store: new Immutable.Map({})};
       }
-      // When component is mount, its entry is added to collection componentUpdateHooks, actionIndex is reset to 0.
+      // When component is mount, its entry is added to collection updateComponentStoreHooks, actionIndex is reset to 0.
       componentWillMount() {
         this.actionIndex = 0;
-        componentUpdateHooks = componentUpdateHooks.set(this.hookIndex, this.updateComponentStore.bind(this));
-        this.initializeComponentStore();
+        updateComponentStoreHooks = updateComponentStoreHooks.set(this.hookIndex, this.updateComponentStore.bind(this));
+        this.updateComponentStore();
       }
-      // When component is unmount, its entry is removed from collection componentUpdateHooks.
+      // When component is unmount, its entry is removed from collection updateComponentStoreHooks.
       componentWillUnmount() {
-        componentUpdateHooks = componentUpdateHooks.remove(this.hookIndex);
-      }
-      // The function will update the store, with the action instanec passed.
-      updateComponentStore(action) {
-        let store = this.state.store;
-        store = this.executeAction(store, action);
-        this.setState({
-          store: store
-        });
+        updateComponentStoreHooks = updateComponentStoreHooks.remove(this.hookIndex);
       }
       // This function will execute all action on actionHistory which are still not executed for this store.
-      initializeComponentStore() {
+      updateComponentStore() {
         let store = this.state.store;
         for(let i = this.actionIndex;i < actionHistory.size;i++) {
-          store = this.executeAction(store, actionHistory[i]);
+          const action = actionHistory.get(i);
+          if(fields.indexOf('__all__') >= 0 || fields.indexOf(action.key) >= 0) {
+            if(action.actionType === 'NEW') {
+              store = store.set(action.key, action.value);
+            } else if(action.actionType === 'REMOVE') {
+              store = store.remove(action.key);
+            } else if(action.actionType === 'APPEND') {
+              let list = store.get(action.key);
+              list = list.append(action.value);
+              store = store.set(action.key, list);
+            } else if(action.actionType === 'DELETE') {
+              let list = store.get(action.key);
+              list = list.remove(action.value);
+              store = store.set(action.key, list);
+            }
+          }
           this.actionIndex++;
         }
         this.setState({
           store: store
         });
       }
-      // Execute single action
-      executeAction(store, action) {
-        if(fields.indexOf('__all__') >= 0 || fields.indexOf(action.key) >= 0) {
-          if(action.actionType === 'NEW') {
-            store = store.set(action.key, action.value);
-          } else if(action.actionType === 'REMOVE') {
-            store = store.remove(action.key);
-          } else if(action.actionType === 'APPEND') {
-            let list = store.get(action.key);
-            list = list.append(action.value);
-            store = store.set(action.key, list);
-          } else if(action.actionType === 'DELETE') {
-            let list = store.get(action.key);
-            list = list.remove(action.value);
-            store = store.set(action.key, list);
-          }
-        }
-        return store;
-      }
-      // rendering component
+      // Rendering component passing store and method updateAppState in props.
       render() {
         return (
           <this.MyComponent {...this.props} store={this.state.store} updateAppState={updateAppState}/>
