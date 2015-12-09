@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Immutable from 'immutable';
+import shallowEqual from './shallowEqual';
 
 // Collection of methods to update state of composing classes, and a counter to make unique keys in the collection.
 let updateComponentStoreHooks = new Immutable.Map({});
@@ -43,6 +44,12 @@ export var configureStore = (fields) => {
       componentWillUnmount() {
         updateComponentStoreHooks = updateComponentStoreHooks.remove(this.hookIndex);
       }
+      // Taken from https://github.com/gaearon/react-pure-render/blob/master/src/shallowEqual.js
+      componentWillReceiveProps(nextProps) {
+        if (!shallowEqual(nextProps, this.props)) {
+          this.setState(getState(nextProps));
+        }
+      }
       // This function will execute all action on actionHistory which are still not executed for this store.
       updateComponentStore() {
         let store = this.state.store;
@@ -72,7 +79,7 @@ export var configureStore = (fields) => {
       // Rendering component passing store and method updateAppState in props.
       render() {
         return (
-          <this.MyComponent {...this.props} store={this.state.store} updateAppState={updateAppState}/>
+          <this.MyComponent {...this.props} {...this.state} updateAppState={updateAppState}/>
         );
       }
     };
