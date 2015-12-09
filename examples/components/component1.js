@@ -18,5 +18,3 @@ export default class Component1 extends Component {
     );
   }
 };
-
-export default configureStore(Component1, ['data1']);
