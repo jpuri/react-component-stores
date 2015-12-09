@@ -8,7 +8,7 @@ import { configureStore } from 'react-state';
 class App extends Component{
   render() {
     return (
-      <div style={{padding: 50, border: '1px solid gray'}}>
+      <div style={{padding: 30, border: '1px solid gray'}}>
         <div style={{fontSize: 20,fontWeight: 'bold'}}>
           <p>Example -  change to the app state initiated in any of the component will be reflected across the application.</p>
         </div>

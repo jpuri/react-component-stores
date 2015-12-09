@@ -8,7 +8,7 @@ export default class Component2 extends Component {
   }
   render() {
     return (
-      <div style={{padding: 50, border: '1px solid gray'}}>
+      <div style={{padding: 30, border: '1px solid gray'}}>
         <p>CHILD COMPONENT-2</p>
         <div style={{marginBottom: 20}}>Enter some value for data1: <input onChange={ ::this.setData1 }/></div>
         <div>This is current value of data2: {this.props.store.get('data2')}</div>
