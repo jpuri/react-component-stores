@@ -1,6 +1,6 @@
 # Darsh
 
-Darsh comes out of our search for a perfect answer to state management in React applications. Darsh handles application state in much different way than the frameworks like flux/redux. Each component has its own store which is an immutable map of key value pairs. Each component declares what it needs in its store.
+Darsh comes out of our search for a perfect answer to state management in React applications. Darsh handles application state in much different way than the frameworks like flux/redux. Each component has its own store which is an immutable map of key value pairs. Each component declares what it needs in its store. Still, the architecture of Darsh supports adding stores to lesser number of components, most of the child components should be dumb and should receive the data in props by parent component.
 
 An action to change application state can be initiated in any component. An action is like a tuple (actionType, key, value). Initiating an action will result in updating the stores of all the components which have declared to be using 'key'. 'actionType' can be like : NEW, REMOVE, APPEND, DELETE (and more to be added).
 
