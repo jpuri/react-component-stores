@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { configureStore } from 'react-state';
+import { configureStore } from 'darsh';
+import { updateAppState } from 'darsh';
 import Component10 from './component10';
 
 @configureStore(['data1'])
 export default class Component1 extends Component {
   setData2 = function(event) {
-    this.props.updateAppState('NEW', 'data2', event.target.value);
+    updateAppState('NEW', 'data2', event.target.value);
   }
   render() {
     return (

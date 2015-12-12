@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { configureStore } from 'react-state';
+import { configureStore } from 'darsh';
 
 export default class Component10 extends Component {
   render() {

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import Component1 from './components/component1';
 import Component2 from './components/component2';
-import { configureStore } from 'react-state';
+import { configureStore } from 'darsh';
 
 @configureStore(['__all__'])
 class App extends Component{

@@ -18,7 +18,7 @@ module.exports = {
   ],
   resolve: {
     alias: {
-      'react-state': path.join(__dirname, '..', 'src'),
+      'darsh': path.join(__dirname, '..', 'src'),
       react: path.join(__dirname, 'node_modules', 'react'),
       'react-dom': path.join(__dirname, 'node_modules', 'react-dom'),
     },
