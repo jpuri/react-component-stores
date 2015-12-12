@@ -1,6 +1,6 @@
 {
-  "name": "react-state",
-  "version": "0.0.0",
+  "name": "darsh",
+  "version": "0.0.1",
   "description": "A state management library for React applications.",
   "author": {
     "name": "Jyoti Puri, Nik Graf",
