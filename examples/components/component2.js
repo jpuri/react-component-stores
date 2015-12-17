@@ -5,7 +5,7 @@ import { updateAppState } from 'darsh';
 @configureStore(['data2'])
 export default class Component2 extends Component {
   setData1 = function(event) {
-    updateAppState('NEW', 'data1', event.target.value);
+    updateAppState({ actionType: 'NEW', key: 'data1', value: event.target.value });
   }
   render() {
     return (

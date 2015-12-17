@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Immutable from 'immutable';
 import shallowEqual from './shallowEqual';
+import updateStore from './updateStore';
 
 // Collection of methods to update state of composing classes, and a counter to make unique keys in the collection.
 let updateComponentStoreHooks = new Immutable.Map({});
@@ -10,12 +11,7 @@ let updateComponentStoreHookCounter=0;
 let actionHistory = new Immutable.List();
 
 // The function is used to update app state of composing components.
-export const updateAppState = function(actionType, key, value) {
-  const action = {
-    actionType: actionType,
-    key: key,
-    value: value
-  };
+export const updateAppState = function(action) {
   actionHistory = actionHistory.push(action)
   updateComponentStoreHooks.forEach(function(updateComponentStore) {
     updateComponentStore();
@@ -56,19 +52,7 @@ export const configureStore = (fields) => {
         for(let i = this.actionIndex;i < actionHistory.size;i++) {
           const action = actionHistory.get(i);
           if(fields.indexOf('__all__') >= 0 || fields.indexOf(action.key) >= 0) {
-            if(action.actionType === 'NEW') {
-              store = store.set(action.key, action.value);
-            } else if(action.actionType === 'REMOVE') {
-              store = store.remove(action.key);
-            } else if(action.actionType === 'APPEND') {
-              let list = store.get(action.key);
-              list = list.append(action.value);
-              store = store.set(action.key, list);
-            } else if(action.actionType === 'DELETE') {
-              let list = store.get(action.key);
-              list = list.remove(action.value);
-              store = store.set(action.key, list);
-            }
+            store = updateStore(store, action);
           }
           this.actionIndex++;
         }

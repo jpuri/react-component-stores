@@ -6,7 +6,7 @@ import Component10 from './component10';
 @configureStore(['data1'])
 export default class Component1 extends Component {
   setData2 = function(event) {
-    updateAppState('NEW', 'data2', event.target.value);
+    updateAppState({ actionType: 'NEW', key: 'data2', value: event.target.value });
   }
   render() {
     return (
