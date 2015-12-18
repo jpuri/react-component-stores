@@ -3,20 +3,21 @@
   "version": "0.0.1",
   "description": "A state management library for React applications.",
   "author": {
-    "name": "Jyoti Puri, Nik Graf",
-    "email": "jyotipuri@gmail.com, nik@nikgraf.com",
-    "url": "http://www.nikgraf.com"
+    "name": "TODO",
+    "email": "TODO",
+    "url": "TODO"
   },
   "repository": {
     "type": "git",
-    "url": "<todo>"
+    "url": "TODO"
   },
   "main": "lib/index.js",
   "keywords": [
     "react"
   ],
   "scripts": {
-    "build": "BABEL_ENV=production babel --out-dir='lib' --ignore='__tests__/*' src"
+    "build": "BABEL_ENV=production babel --out-dir='lib' --ignore='__tests__/*' src",
+    "test": "karma start"
   },
   "devDependencies": {
     "babel": "^5.8.29",
@@ -28,10 +29,17 @@
     "eslint": "^1.10.2",
     "eslint-config-airbnb": "^1.0.2",
     "eslint-plugin-react": "^3.10.0",
+    "expect": "^1.13.4",
+    "karma": "^0.13.15",
+    "karma-chrome-launcher": "^0.2.2",
+    "karma-mocha": "^0.2.1",
+    "karma-sourcemap-loader": "^0.3.6",
+    "karma-webpack": "^1.7.0",
+    "mocha": "^2.3.4",
     "react": "^0.14.3",
+    "react-transform-catch-errors": "^1.0.0",
     "react-transform-hmr": "^1.0.1",
     "redbox-react": "^1.2.0",
-    "react-transform-catch-errors": "^1.0.0",
     "webpack": "^1.12.9",
     "webpack-dev-middleware": "^1.4.0",
     "webpack-dev-server": "^1.14.0",
