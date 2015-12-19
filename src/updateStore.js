@@ -1,16 +1,18 @@
 export default function updateStore(store, action) {
-    if(action.actionType === 'NEW') {
-      store = store.set(action.key, action.value);
-    } else if(action.actionType === 'REMOVE') {
-      store = store.remove(action.key);
-    } else if(action.actionType === 'APPEND') {
-      let list = store.get(action.key);
-      list = list.append(action.value);
-      store = store.set(action.key, list);
-    } else if(action.actionType === 'DELETE') {
-      let list = store.get(action.key);
-      list = list.remove(action.value);
-      store = store.set(action.key, list);
-    }
-  return store;
+  let newStore;
+  if (action.actionType === 'NEW') {
+    newStore = store.set(action.key, action.value);
+  } else if (action.actionType === 'DELETE') {
+    newStore = store.remove(action.key);
+  } else if (action.actionType === 'APPEND') {
+    let list = store.get(action.key);
+    list = list.push(action.value);
+    newStore = store.set(action.key, list);
+  } else if (action.actionType === 'REMOVE') {
+    let list = store.get(action.key);
+    const index = list.indexOf(action.value);
+    list = list.remove(index);
+    newStore = store.set(action.key, list);
+  }
+  return newStore;
 }

@@ -5,18 +5,18 @@ import updateStore from './updateStore';
 
 // Collection of methods to update state of composing classes, and a counter to make unique keys in the collection.
 let updateComponentStoreHooks = new Immutable.Map({});
-let updateComponentStoreHookCounter=0;
+let updateComponentStoreHookCounter = 0;
 
 // Collection of history of all actions in the application.
 let actionHistory = new Immutable.List();
 
 // The function is used to update app state of composing components.
-export const updateAppState = function(action) {
-  actionHistory = actionHistory.push(action)
-  updateComponentStoreHooks.forEach(function(updateComponentStore) {
+export const updateAppState = (action) => {
+  actionHistory = actionHistory.push(action);
+  updateComponentStoreHooks.forEach((updateComponentStore) => {
     updateComponentStore();
-  })
-}
+  });
+};
 
 // This method creates composed component.
 // The higher order component has in its state store which it passes in props to composed component.
