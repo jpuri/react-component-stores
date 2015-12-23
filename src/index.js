@@ -3,5 +3,5 @@ import { configureStore } from './configureStore';
 
 module.exports = {
   updateAppState: updateAppState,
-  configureStore: configureStore
+  configureStore: configureStore,
 };
