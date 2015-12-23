@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import Immutable from 'immutable';
-import shallowEqual from './shallowEqual';
 import updateStore from './updateStore';
 
 // Collection of methods to update state of composing classes, and a counter to make unique keys in the collection.
@@ -22,7 +21,7 @@ export const updateAppState = (action) => {
 // The higher order component has in its state store which it passes in props to composed component.
 export const configureStore = (fields) => {
   return (component) => {
-    class newComponent extends Component  {
+    class newComponent extends Component {
       constructor(properties) {
         super(properties);
         this.hookIndex = updateComponentStoreHookCounter;
@@ -40,24 +39,18 @@ export const configureStore = (fields) => {
       componentWillUnmount() {
         updateComponentStoreHooks = updateComponentStoreHooks.remove(this.hookIndex);
       }
-      // Taken from https://github.com/gaearon/react-pure-render/blob/master/src/shallowEqual.js
-      componentWillReceiveProps(nextProps) {
-        if (!shallowEqual(nextProps, this.props)) {
-          this.setState(getState(nextProps));
-        }
-      }
       // This function will execute all action on actionHistory which are still not executed for this store.
       updateComponentStore() {
         let store = this.state.store;
-        for(let i = this.actionIndex;i < actionHistory.size;i++) {
+        for (let i = this.actionIndex; i < actionHistory.size; i++) {
           const action = actionHistory.get(i);
-          if(fields.indexOf('__all__') >= 0 || fields.indexOf(action.key) >= 0) {
+          if (fields.indexOf('__all__') >= 0 || fields.indexOf(action.key) >= 0) {
             store = updateStore(store, action);
           }
           this.actionIndex++;
         }
         this.setState({
-          store: store
+          store: store,
         });
       }
       // Rendering component passing store and method updateAppState in props.
@@ -66,7 +59,7 @@ export const configureStore = (fields) => {
           <this.MyComponent {...this.props} {...this.state} />
         );
       }
-    };
+    }
     return newComponent;
   };
 };
