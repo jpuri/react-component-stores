@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
-import Component1 from './components/component1';
-import Component2 from './components/component2';
+import { Component1 } from './components';
+import { Component2 } from './components';
 import { configureStore } from 'darsh';
 
-@configureStore(['__all__'])
 class App extends Component{
   render() {
     return (
@@ -22,4 +21,6 @@ class App extends Component{
   }
 };
 
-ReactDOM.render(<App/>, document.getElementById('react'));
+const ComposedApp = configureStore(['__all__'])(App);
+
+ReactDOM.render(<ComposedApp/>, document.getElementById('react'));
