@@ -1,5 +1,5 @@
-import { updateAppState } from './configureStore';
-import { configureStore } from './configureStore';
+import { updateAppState } from './configureApp';
+import { configureStore } from './configureApp';
 
 module.exports = {
   updateAppState: updateAppState,

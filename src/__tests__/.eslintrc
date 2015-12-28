@@ -2,5 +2,6 @@
   "extends": "airbnb",
   "rules": {
       "no-undef": 0,
+      "react/prop-types": 0,
     }
 }

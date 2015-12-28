@@ -2,27 +2,27 @@ jest.dontMock('../updateStore');
 jest.dontMock('../configureApp');
 jest.dontMock('immutable');
 
-const updateStore = require('../updateStore');
 const configureApp = require('../configureApp');
 
-import React from 'react';
+import React, {Component} from 'react';
 import TestUtils from 'react-addons-test-utils';
 
-// import { updateAppState, configureStore } from '../configureStore';
+class Component1 extends Component {
+  render() {
+    return (
+      <div>{ this.props.store.get('data1') ? this.props.store.get('data1') : '*****' }</div>
+    );
+  }
+}
+
+const ComposedComponent = configureApp.configureStore(['data1'])(Component1);
 
 describe('configureStore', () => {
   it('update state of composing component when updateAppState is called', () => {
-    /* const component = () => {
-      return (<div><div className="testClass1">**</div><div className="testClass2">###</div></div>);
-    };
-    const composingComponent = configureApp.configureStore(['data1'])(component);
-
-    const renderer = TestUtils.createRenderer();
-
-    const componentInstance = renderer.render(<div><div className="testClass1">**</div><div className="testClass2">###</div></div>);
+    const componentInstance = TestUtils.renderIntoDocument(<ComposedComponent/>);
+    const componentNode = TestUtils.scryRenderedDOMComponentsWithTag(componentInstance, 'div');
+    expect(componentNode[0].innerHTML).toBe('*****');
     configureApp.updateAppState({ actionType: 'NEW', key: 'data1', value: 'testing1' });
-    // const componentNode = TestUtils.findRenderedDOMComponentWithClass(componentInstance, 'testClass1');
-    // console.warn('-------1', componentNode);
-    console.warn('-------2', componentInstance.state);*/
+    expect(componentNode[0].innerHTML).toBe('testing1');
   });
 });
