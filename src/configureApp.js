@@ -50,7 +50,7 @@ export const configureStore = (fields) => {
           this.actionIndex++;
         }
         this.setState({
-          store: store,
+          store,
         });
       }
       // Rendering component passing store and method updateAppState in props.

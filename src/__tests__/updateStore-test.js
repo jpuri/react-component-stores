@@ -1,6 +1,8 @@
-import expect from 'expect';
-import updateStore from '../updateStore';
-import Immutable from 'immutable';
+jest.dontMock('../updateStore');
+jest.dontMock('immutable');
+
+const updateStore = require('../updateStore');
+const Immutable = require('immutable');
 
 describe('updateStore', () => {
   it('should add (key,value) to store when action_type is NEW', () => {

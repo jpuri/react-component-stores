@@ -1,6 +1,3 @@
 {
-  "extends": "airbnb",
-  "env": {
-      "mocha": true
-  }
+  "extends": "airbnb"
 }
