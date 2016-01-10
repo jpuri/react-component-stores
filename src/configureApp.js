@@ -56,7 +56,7 @@ export const configureStore = (fields) => {
       // Rendering component passing store and method updateAppState in props.
       render() {
         return (
-          <this.MyComponent {...this.props} {...this.state} />
+          <this.MyComponent {...this.props} {...this.state} compChildren={this.props.children} />
         );
       }
     }
