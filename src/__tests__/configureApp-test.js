@@ -4,7 +4,7 @@ jest.dontMock('immutable');
 
 const configureApp = require('../configureApp');
 
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import TestUtils from 'react-addons-test-utils';
 
 class Component1 extends Component {
@@ -18,17 +18,17 @@ class Component1 extends Component {
 const ComposedComponent = configureApp.configureStore(['data1'])(Component1);
 
 describe('configureStore', () => {
-  it('update state of composing component when updateAppState is called', () => {
-    const componentInstance = TestUtils.renderIntoDocument(<ComposedComponent/>);
+  it('update state of composing component when updateComponentStores is called', () => {
+    const componentInstance = TestUtils.renderIntoDocument(<ComposedComponent />);
     const componentNode = TestUtils.scryRenderedDOMComponentsWithTag(componentInstance, 'div');
     expect(componentNode[0].innerHTML).toBe('*****');
-    configureApp.updateAppState({ actionType: 'NEW', key: 'data1', value: 'testing1' });
+    configureApp.updateComponentStores({ actionType: 'NEW', key: 'data1', value: 'testing1' });
     expect(componentNode[0].innerHTML).toBe('testing1');
   });
 
   it('should update store of even newly added component', () => {
-    configureApp.updateAppState({ actionType: 'NEW', key: 'data1', value: 'testing1' });
-    const componentInstance = TestUtils.renderIntoDocument(<ComposedComponent/>);
+    configureApp.updateComponentStores({ actionType: 'NEW', key: 'data1', value: 'testing1' });
+    const componentInstance = TestUtils.renderIntoDocument(<ComposedComponent />);
     const componentNode = TestUtils.scryRenderedDOMComponentsWithTag(componentInstance, 'div');
     expect(componentNode[0].innerHTML).toBe('testing1');
   });

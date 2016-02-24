@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { updateAppState } from 'darsh';
+import { updateComponentStores } from 'darsh';
 import Component10 from './component10';
 
 export default class Component1 extends Component {
   setData2 = function(event) {
-    updateAppState({ actionType: 'NEW', key: 'data2', value: event.target.value });
+    updateComponentStores({ actionType: 'NEW', key: 'data2', value: event.target.value });
   }
   render() {
     return (

@@ -14,7 +14,6 @@ class App extends Component{
         <p>ROOT COMPONENT</p>
         <div style={{marginBottom:20}}>This is current value of data1: {this.props.store.get('data1')}</div>
         <div style={{marginBottom:20}}>This is current value of data2: {this.props.store.get('data2')}</div>
-        <Component1 />
         <Component2 />
       </div>
     )

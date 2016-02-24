@@ -19,7 +19,7 @@ Summarizing features:
 5. All the actions ever done are recorded sequentially.
 
 # Example
-The library is extremely simplified and also easy for use. All you need to do is annotate you components with the key for data that they need in the store. And the component will have in its props a store which will be an immutable map of this data.
+The library is extremely simplified and also easy for use.
 
 ```
 @configureStore(['data1', 'data2'])

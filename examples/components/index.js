@@ -6,5 +6,5 @@ import { configureStore } from 'darsh';
 module.exports = {
   Component1: configureStore(['data1'])(Component1),
   Component2: configureStore(['data2'])(Component2),
-  Component10: Component10,
+  Component10,
 };
