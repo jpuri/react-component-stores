@@ -1,7 +1,7 @@
 jest.dontMock('../updateStore');
 jest.dontMock('immutable');
 
-const updateStore = require('../updateStore');
+const updateStore = require('../updateStore').default;
 const Immutable = require('immutable');
 
 describe('updateStore', () => {
