@@ -10,7 +10,7 @@ let updateComponentStoreHookCounter = 0;
 let actionHistory = new Immutable.List();
 
 // The function is used to update app state of composing components.
-export const updateAppState = (action) => {
+export const updateComponentStores = (action) => {
   actionHistory = actionHistory.push(action);
   updateComponentStoreHooks.forEach((updateComponentStore) => {
     updateComponentStore();
@@ -53,7 +53,7 @@ export const configureStore = (fields) => {
           store,
         });
       }
-      // Rendering component passing store and method updateAppState in props.
+      // Rendering component passing store and method updateComponentStores in props.
       render() {
         return (
           <this.MyComponent {...this.props} {...this.state} compChildren={this.props.children} />

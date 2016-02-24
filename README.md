@@ -1,17 +1,21 @@
 # Darsh
 
-Darsh comes out of our search for a perfect answer to state management in React applications. Darsh handles application state in much different way than the frameworks like flux/redux. Each component has its own store which is an immutable map of key value pairs. Each component declares what it needs in its store. Still, the architecture of Darsh supports adding stores to lesser number of components, most of the child components should be dumb and should receive the data in props by parent component.
+Darsh comes out of my search for a simplified answer to state management in React applications. Maintaining application state in React is I think something that has been over-complicated by the libraries out there. Relay addresses state management in really nice way - but for building a React application of smaller size/scope I use Darsh.
 
-An action to change application state can be initiated in any component. An action is like a tuple (actionType, key, value). Initiating an action will result in updating the stores of all the components which have declared to be using 'key'. 'actionType' can be like : NEW, REMOVE, APPEND, DELETE (and more to be added).
+In a React application the need to state management arises only if you have a data model for your application that is not hierarchical like your components but is graphical with cross connections.
 
-In addition a history of all the actions ever executed in application is maintained, so its very easy to reconstruct store for any component or even entire application state any any point in time.
+In Darsh each component can declare to have its own store which will be an immutable component of key-value pairs. The store will be passed to the component in its props. If there is an change in data initiated in a component which is required to be know to an unrelated components in application the component can call the method of Darsh library `updateComponentStores`, and it will update the stores of all the components which have declared to be using that data.
+
+But it may happen that a component come into picture much later in the life cycle of the application, thus we need to be able to construct the store for that component. For this purpose Darsh maintains the log of all the calls ever made to `updateComponentStores`. Thus the store for any component can be reconstructed at any point in time.
+
+Thus what i also like about Drash is that it does not creates application level stores, each component can declare to have its own little store :). Nested dumb components can be passed data in props and should not need a store anyway.
 
 Summarizing features:
 
 1. Stores belongs to the components :)
 2. The store for the component is an immutable map of key-value pairs.
 3. Each component declare what all data it needs in its store.
-4. Any change to application state is done using method updateAppState(actionType, key, value). Its will result in change in store of all component which have declared to be using data with this 'key'.
+4. Any change to application state is done using method updateComponentStores(actionType, key, value). Its will result in change in store of all component which have declared to be using data with this 'key'.
 5. All the actions ever done on application state are recorded sequentially.
 
 # Example
@@ -24,7 +28,7 @@ export default class Component1 extends Component {
 };
 ```
 
-Any change to application state should be done using api method `updateAppState(actionType, key, value)`. In given example if `updateAppState` is called using key as `data1` or `data2` the component store will get updated.
+Any change to data should be done using api method `updateComponentStores(actionType, key, value)`. In given example if `updateComponentStores` is called using key as `data1` or `data2` the component store will get updated.
 
 ### Influences
 1. [OM](https://github.com/omcljs/om)
