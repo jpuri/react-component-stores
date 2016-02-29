@@ -18,16 +18,26 @@ describe('updateStore', () => {
     expect(store.size).toBe(0);
     expect(store.get('test_key')).toBe(undefined);
   });
-  it('should append value to list in store when action_type is LIST_NEW', () => {
+  it('should append value to list in store when action_type is LIST_ADD', () => {
     let store = new Immutable.Map({});
     store = store.set('test_list_key', new Immutable.List());
     store = updateStore(store,
-      { actionType: 'LIST_NEW', key: 'test_list_key', value: 'test_list_value' });
+      { actionType: 'LIST_ADD', key: 'test_list_key', value: 'test_list_value' });
     expect(store.size).toBe(1);
     expect(store.get('test_list_key').size).toBe(1);
     expect(store.get('test_list_key').get(0)).toBe('test_list_value');
   });
-  it('should remove value from list in store when action_type is LIST_DELETE', () => {
+  it('should create a new list when list does not already exist and action_type is LIST_ADD',
+    () => {
+      let store = new Immutable.Map({});
+      expect(store.size).toBe(0);
+      store = updateStore(store,
+        { actionType: 'LIST_ADD', key: 'test_list_key', value: 'test_list_value' });
+      expect(store.size).toBe(1);
+      expect(store.get('test_list_key').size).toBe(1);
+      expect(store.get('test_list_key').get(0)).toBe('test_list_value');
+    });
+  it('should remove value from list in store when action_type is LIST_REMOVE', () => {
     let store = new Immutable.Map({});
     let storeList = new Immutable.List();
     storeList = storeList.push('test_list_value');
@@ -35,15 +45,15 @@ describe('updateStore', () => {
     expect(store.size).toBe(1);
     expect(store.get('test_list_key').size).toBe(1);
     store = updateStore(store,
-      { actionType: 'LIST_DELETE', key: 'test_list_key', value: 'test_list_value' });
+      { actionType: 'LIST_REMOVE', key: 'test_list_key', value: 'test_list_value' });
     expect(store.size).toBe(1);
     expect(store.get('test_list_key').size).toBe(0);
   });
-  it('should add value to map in store when action_type is MAP_NEW', () => {
+  it('should add value to map in store when action_type is MAP_ADD', () => {
     let store = new Immutable.Map({});
     store = store.set('test_map_key', new Immutable.Map({}));
     store = updateStore(store, {
-      actionType: 'MAP_NEW',
+      actionType: 'MAP_ADD',
       key: 'test_map_key',
       value: { key: 'test_key', value: 'test_value' },
     });
@@ -51,7 +61,19 @@ describe('updateStore', () => {
     expect(store.get('test_map_key').size).toBe(1);
     expect(store.get('test_map_key').get('test_key')).toBe('test_value');
   });
-  it('should remove value from map when action_type is MAP_DELETE', () => {
+  it('should create a new map if it does not already exist and action_type is MAP_ADD', () => {
+    let store = new Immutable.Map({});
+    expect(store.size).toBe(0);
+    store = updateStore(store, {
+      actionType: 'MAP_ADD',
+      key: 'test_map_key',
+      value: { key: 'test_key', value: 'test_value' },
+    });
+    expect(store.size).toBe(1);
+    expect(store.get('test_map_key').size).toBe(1);
+    expect(store.get('test_map_key').get('test_key')).toBe('test_value');
+  });
+  it('should remove value from map when action_type is MAP_REMOVE', () => {
     let store = new Immutable.Map({});
     let storeMap = new Immutable.Map({});
     storeMap = storeMap.set('test_key', 'test_value');
@@ -59,8 +81,16 @@ describe('updateStore', () => {
     expect(store.size).toBe(1);
     expect(store.get('test_map_key').size).toBe(1);
     store = updateStore(store,
-      { actionType: 'MAP_DELETE', key: 'test_map_key', value: 'test_key' });
+      { actionType: 'MAP_REMOVE', key: 'test_map_key', value: 'test_key' });
     expect(store.size).toBe(1);
     expect(store.get('test_map_key').size).toBe(0);
+  });
+  it('should clear store when action_type is FLUSH', () => {
+    let store = new Immutable.Map({});
+    store = store.set('test', 'TEST');
+    expect(store.size).toBe(1);
+    store = updateStore(store,
+      { actionType: 'FLUSH' });
+    expect(store.size).toBe(0);
   });
 });

@@ -1,15 +1,15 @@
 {
-  "name": "darsh",
+  "name": "Darsh",
   "version": "0.1.1",
-  "description": "A state management library for React applications.",
+  "description": "State management library for React applications.",
   "author": {
-    "name": "TODO",
-    "email": "TODO",
+    "name": "Jyoti Puri",
+    "email": "jyotipuri@gmail.com",
     "url": "TODO"
   },
   "repository": {
     "type": "git",
-    "url": "TODO"
+    "url": "https://github.com/jpuri/darsh.git"
   },
   "main": "lib/index.js",
   "keywords": [
