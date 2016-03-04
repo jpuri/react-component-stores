@@ -9,8 +9,8 @@ let updateComponentStoreHooks = new Immutable.List();
 let actionHistory = new Immutable.List();
 
 // The function is used to update stores of the components.
-export const updateComponentStores = (action) => {
-  actionHistory = actionHistory.push(action);
+export const updateComponentStores = (action, key, value) => {
+  actionHistory = actionHistory.push({ action, key, value });
   updateComponentStoreHooks.forEach((updateComponentStore) => {
     updateComponentStore();
   });

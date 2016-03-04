@@ -22,12 +22,12 @@ describe('configureStore', () => {
     const componentInstance = TestUtils.renderIntoDocument(<ComposedComponent />);
     const componentNode = TestUtils.scryRenderedDOMComponentsWithTag(componentInstance, 'div');
     expect(componentNode[0].innerHTML).toBe('*****');
-    configureApp.updateComponentStores({ actionType: 'NEW', key: 'data1', value: 'testing1' });
+    configureApp.updateComponentStores('NEW', 'data1', 'testing1');
     expect(componentNode[0].innerHTML).toBe('testing1');
   });
 
   it('should update store of even newly added component', () => {
-    configureApp.updateComponentStores({ actionType: 'NEW', key: 'data1', value: 'testing1' });
+    configureApp.updateComponentStores('NEW', 'data1', 'testing1');
     const componentInstance = TestUtils.renderIntoDocument(<ComposedComponent />);
     const componentNode = TestUtils.scryRenderedDOMComponentsWithTag(componentInstance, 'div');
     expect(componentNode[0].innerHTML).toBe('testing1');

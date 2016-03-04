@@ -4,7 +4,7 @@ import { updateComponentStores } from 'comst';
 
 export default class Component2 extends Component {
   setData1 = function(event) {
-    updateComponentStores({ actionType: 'NEW', key: 'data1', value: event.target.value });
+    updateComponentStores('NEW', 'data1', event.target.value);
   }
   render() {
     return (
