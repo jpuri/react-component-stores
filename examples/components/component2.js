@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { configureStore } from 'darsh';
-import { updateComponentStores } from 'darsh';
+import { configureStore } from 'comst';
+import { updateComponentStores } from 'comst';
 
 export default class Component2 extends Component {
   setData1 = function(event) {

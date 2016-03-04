@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import { Component1 } from './components';
 import { Component2 } from './components';
-import { configureStore } from 'darsh';
+import { configureStore } from 'comst';
 
 class App extends Component{
   render() {

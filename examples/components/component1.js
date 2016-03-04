@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { updateComponentStores } from 'darsh';
+import { updateComponentStores } from 'comst';
 import Component10 from './component10';
 
 export default class Component1 extends Component {
