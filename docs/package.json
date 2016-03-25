@@ -38,6 +38,7 @@
     "webpack-dev-server": "^1.14.1"
   },
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "build": "NODE_ENV=production webpack -p --config webpack.config.build.js"
   }
 }
