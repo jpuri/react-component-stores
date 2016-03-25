@@ -27,11 +27,13 @@
     "babel-preset-react": "^6.5.0",
     "babel-preset-react-hmre": "^1.1.0",
     "babel-preset-stage-0": "^6.5.0",
+    "css-loader": "^0.23.1",
     "eslint": "^2.2.0",
     "express": "^4.13.4",
     "node-libs-browser": "^1.0.0",
     "react-transform-catch-errors": "^1.0.2",
     "redbox-react": "^1.2.2",
+    "style-loader": "^0.13.1",
     "webpack": "^1.12.14",
     "webpack-dev-server": "^1.14.1"
   },
