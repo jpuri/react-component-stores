@@ -4,16 +4,11 @@ jest.dontMock('immutable');
 
 const configureApp = require('../configureApp');
 
-import React, { Component } from 'react';
+import React from 'react';
 import TestUtils from 'react-addons-test-utils';
 
-class Component1 extends Component {
-  render() {
-    return (
-      <div>{ this.props.store.get('data1') ? this.props.store.get('data1') : '*****' }</div>
-    );
-  }
-}
+const Component1 = (props) =>
+  <div>{ props.store.get('data1') ? props.store.get('data1') : '*****' }</div>;
 
 const ComposedComponent = configureApp.configureStore(['data1'])(Component1);
 

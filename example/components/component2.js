@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { configureStore } from 'comst';
-import { updateComponentStores } from 'comst';
+import { configureStore } from 'react-component-store';
+import { updateComponentStores } from 'react-component-store';
 
 export default class Component2 extends Component {
   setData1 = function(event) {

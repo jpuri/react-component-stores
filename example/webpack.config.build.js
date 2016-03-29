@@ -12,7 +12,7 @@ module.exports = {
   },
   resolve: {
     alias: {
-      comst: path.join(__dirname, '..', 'src'),
+      'react-component-store': path.join(__dirname, '..', 'src'),
       react: path.join(__dirname, 'node_modules', 'react'),
     },
     extensions: ['', '.js'],

@@ -24,7 +24,8 @@ export default function updateStore(store, action) {
     list = list.remove(index);
     newStore = store.set(action.key, list);
   } else if (action.action === 'MAP_ADD') {
-    // MAP_ADD: action has key (key of map) and value to be added to the map. Value is in turn key->value pair.
+    // MAP_ADD: action has key (key of map) and value to be added to the map.
+    // Value is in turn key->value pair.
     let map = store.get(action.key);
     if (!map) {
       map = new Immutable.Map({});
@@ -32,7 +33,8 @@ export default function updateStore(store, action) {
     map = map.set(action.value.key, action.value.value);
     newStore = store.set(action.key, map);
   } else if (action.action === 'MAP_REMOVE') {
-    // MAP_ADD: action has key (key of map) and value to be added to the map. Value is in turn has a key.
+    // MAP_ADD: action has key (key of map) and value to be added to the map.
+    // Value is in turn has a key.
     let map = store.get(action.key);
     map = map.remove(action.value);
     newStore = store.set(action.key, map);

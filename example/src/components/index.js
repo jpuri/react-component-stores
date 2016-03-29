@@ -1,7 +1,7 @@
 import Component1 from './component1';
 import Component2 from './component2';
 import Component10 from './component10';
-import { configureStore } from 'comst';
+import { configureStore } from 'react-component-store';
 
 module.exports = {
   Component1: configureStore(['data1'])(Component1),

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { configureStore } from 'comst';
+import { configureStore } from 'react-component-store';
 
 export default class Component10 extends Component {
   render() {

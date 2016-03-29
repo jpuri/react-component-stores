@@ -26,7 +26,8 @@ export const configureStore = (fields) => (component) => class extends Component
     this.state = { store: new Immutable.Map({}) };
   }
 
-  // When component is mount, its entry is added to collection updateComponentStoreHooks, actionIndex is reset to 0.
+  // When component is mount, its entry is added to collection updateComponentStoreHooks,
+  // actionIndex is reset to 0.
   componentWillMount() {
     this.actionIndex = 0;
     updateComponentStoreHooks = updateComponentStoreHooks.push(this.updateComponentStore);
@@ -35,10 +36,12 @@ export const configureStore = (fields) => (component) => class extends Component
 
   // When component is unmount, its entry is removed from collection updateComponentStoreHooks.
   componentWillUnmount() {
-    updateComponentStoreHooks = updateComponentStoreHooks.remove(updateComponentStoreHooks.indexOf(this.updateComponentStore));
+    updateComponentStoreHooks = updateComponentStoreHooks
+      .remove(updateComponentStoreHooks.indexOf(this.updateComponentStore));
   }
 
-  // This function will execute all action on actionHistory which are still not executed for this store.
+  // This function will execute all action on actionHistory which
+  // are still not executed for this store.
   updateComponentStore = () => {
     let store = this.state.store;
     for (let i = this.actionIndex; i < actionHistory.size; i++) {
