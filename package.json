@@ -1,11 +1,11 @@
 {
   "name": "react-component-store",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "State management library for React applications.",
   "author": {
     "name": "Jyoti Puri",
     "email": "jyotipuri@gmail.com",
-    "url": "TODO"
+    "url": "http://jpuri.github.io/"
   },
   "repository": {
     "type": "git",
@@ -25,7 +25,7 @@
     "babel-cli": "^6.6.5",
     "babel-core": "^6.7.4",
     "babel-eslint": "^6.0.0",
-    "babel-jest": "^9.0.3",
+    "babel-jest": "^11.0.1",
     "babel-loader": "^6.2.4",
     "babel-plugin-react-transform": "^2.0.2",
     "babel-preset-es2015": "^6.6.0",
@@ -33,11 +33,11 @@
     "babel-preset-react-hmre": "^1.1.1",
     "babel-preset-stage-0": "^6.5.0",
     "eslint": "^2.5.3",
-    "eslint-config-airbnb": "^6.2.0",
+    "eslint-config-airbnb": "^7.0.0",
     "eslint-plugin-react": "^4.2.3",
-    "jest-cli": "^0.9.2",
-    "react": "^0.14.7",
-    "react-addons-test-utils": "^0.14.7",
+    "jest-cli": "^11.0.1",
+    "react": "^15.0.1",
+    "react-addons-test-utils": "^15.0.1",
     "react-transform-catch-errors": "^1.0.2",
     "react-transform-hmr": "^1.0.4",
     "redbox-react": "^1.2.2",
