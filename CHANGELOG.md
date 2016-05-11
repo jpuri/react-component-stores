@@ -4,4 +4,4 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 
 ## 11 May 2016
-- release 1.0
+- Release 1.0
